@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <link rel=" icon " type=" image/png " href="../../IMAGENES/pollo.ico">
   <meta name=" viewport " content=" width = device-width, user-scalable = no, initial-scale = 1.0, maximum-scale = 1.0, minimum-scale = 1.0 ">
-  <meta name=" keywords " content=" frituras, frito, cventa, empanada, pasteles, tortas, torta carne, hambre, comida ">
+  <meta name=" keywords " content=" frituras, frito, venta, empanada, pasteles, tortas, torta carne, hambre, comida ">
   <meta name=" description " content="empresa dedidcada ala venta de frituras de la mejor calidad">
   <meta name=" autor " content=" TecnoEAM">
   <meta name=" owner " content=" https://www.facebook.com/estiven.a.martinez ">
