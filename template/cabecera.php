@@ -22,7 +22,7 @@
   <?php $url = "http://" . $_SERVER['HTTP_HOST'] . "/sitioWeb" ?>
     <div class="container" style="margin-bottom: 80px;">
 
-    <nav class="navbar navbar-expand-lg bg-dark" >
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top" >
       <div class="container-fluid">
           <a  href="index.php"><img class="logo"src="./img/logo.jpg" height="80px"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
