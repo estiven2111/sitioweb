@@ -79,5 +79,8 @@ $listaProductos=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 
-<?php   include("template/pie.php"); ?>
+<?php 
+include ('correo.php');
+include("template/pie.php");
+ ?>
 

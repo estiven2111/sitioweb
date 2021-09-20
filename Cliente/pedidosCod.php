@@ -92,21 +92,18 @@ function enviodatos()
       $num_fac[0]['id'] = "0";
     }
     $factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** <br> <br>" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "<br> USUARIO  " . $_SESSION['USUARIO'] . "<br><br><br>";
-    //$factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** \n\r" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "<br> USUARIO  " . $_SESSION['USUARIO'] . "\n\r";
+    
     foreach ($listaProductos as $imprimir) {
       $nomp1 = str_replace(' ', '_', $imprimir);
       if ((int)$_POST[$nomp1['nombre']] != 0) {
         $factura = $factura . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']] . "<br>";
-         //$factura = $factura . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']] . "\n\r";
+         
       }
     }
 
-    // echo "nombre $cadena <br>";
-    // echo "cantidad $cadenacant <br>";
-    // echo "total productos $totalprod <br>";
-    $factura = $factura . "totla precio = $totalprecio <br><br><br>";
-    //$factura = $factura . "totla precio = $totalprecio \n\r";
-    // echo "nombre usu ".$_SESSION['USUARIO'];
+    
+    $factura = $factura . "total precio = $totalprecio <br><br><br>";
+    
 
     $_SESSION['factura'] = $factura;
     $txtfact = (int)$num_fac[$tfact]['id'];
