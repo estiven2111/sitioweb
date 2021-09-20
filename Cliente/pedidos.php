@@ -72,7 +72,9 @@ $listaProductos=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     <div style="text-align: center; border: 5px solid black; width: 50%; margin: 30px auto 30px auto; background: gray;">
         <?php echo isset($_SESSION['factura'])?$_SESSION['factura']:"";
         echo isset($_SESSION['factura'])? "<br><br><a  class = 'btn btn-primary' href= '../PDFOK/.php' > DESCARGAR </a>":"";
-             ?>
+        //echo isset($_POST['ENVIAR'])?include ('correo.php'):"";
+        include ('correo.php')
+        ?>
         
     </div>
 </div>
@@ -80,7 +82,7 @@ $listaProductos=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 <?php 
-include ('correo.php');
+
 include("template/pie.php");
  ?>
 

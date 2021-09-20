@@ -51,7 +51,7 @@ try {
 
     $mail->isHTML(true);
     $mail->Subject = 'Factura Fabrica del frito';
-    $mail->Body = "<div style='text-aling:center; color:red;'>$correo </div>";
+    $mail->Body = $correo;
     $mail->send();
 
     echo 'Te enviamos tu factura al correo registrado porfavor verifica tu bandeja <br> de entrada o en correos no deseados';
