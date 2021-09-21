@@ -1,6 +1,7 @@
 <?php
  include("../administrador/config/verificar.php"); 
  include("template/cabecera.php"); 
+ //include ('./correo.php');
 
 ?>
 
@@ -70,10 +71,13 @@ $listaProductos=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     <input type="submit" onclick="mostrar" name="ENVIAR"  value="ENVIAR" class="btn btn-primary"/>
 </form>
     <div style="text-align: center; border: 5px solid black; width: 50%; margin: 30px auto 30px auto; background: gray;">
-        <?php echo isset($_SESSION['factura'])?$_SESSION['factura']:"";
-        echo isset($_SESSION['factura'])? "<br><br><a  class = 'btn btn-primary' href= '../PDFOK/.php' > DESCARGAR </a>":"";
-        //echo isset($_POST['ENVIAR'])?include ('correo.php'):"";
-        include ('correo.php')
+        <?php echo isset($_SESSION['factura'])?nl2br($_SESSION['factura']):"";
+        echo isset($_SESSION['factura'])? "<br><br><a  class = 'btn btn-primary' href= '../PDFOK/reporte.php' > DESCARGAR </a>":"";
+        echo isset($_SESSION['mail'])? "<br><br>".$_SESSION['mail']:"";
+        
+        //echo "<br><br>".$_SESSION['mail'];
+      
+        
         ?>
         
     </div>

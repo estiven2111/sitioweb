@@ -9,7 +9,7 @@ $txtCorreo = (isset($_POST['txtCorreo'])) ? $_POST['txtCorreo'] : "";
 $txtContrasenia = (isset($_POST['txtContrasenia'])) ? $_POST['txtContrasenia'] : "";
 $accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 
-
+echo nl2br("sun \n \n moon \n  \nsun \n moon");
 include("administrador/config/db.php");
 
 

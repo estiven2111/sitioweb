@@ -53,7 +53,7 @@
 
 
 
-
+/*
 error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED ^ E_STRICT);
 
 require_once "Mail.php";
@@ -64,7 +64,7 @@ $password = "E1020441991E";
 $port = "587";
 $to = "estiven.a.martinez@outlook.com";
 $email_from = "estiven.a.martinez@gmail.com";
-$email_subject = "Línea de asunto aquí:";
+$email_subject = "Lï¿½nea de asunto aquï¿½:";
 $email_body = "Lo que tu quieras";
 $email_address = "responder-a@example.com";
 
@@ -78,7 +78,7 @@ echo("<p>" . $mail->getMessage() . "</p>");
 } else {
 echo("<p>Message successfully sent!</p>");
 
+}
+*/
 
-
-
-
+?>

@@ -91,18 +91,18 @@ function enviodatos()
     if (empty($num_fac[0]['id'])) {
       $num_fac[0]['id'] = "0";
     }
-    $factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** <br> <br>" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "<br> USUARIO  " . $_SESSION['USUARIO'] . "<br><br><br>";
-    
+    //$factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** <br> <br>" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "<br> USUARIO  " . $_SESSION['USUARIO'] . "<br><br><br>";
+    $factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** \n\n" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "\n USUARIO  " . $_SESSION['USUARIO'] . "\n\n\n";
     foreach ($listaProductos as $imprimir) {
       $nomp1 = str_replace(' ', '_', $imprimir);
       if ((int)$_POST[$nomp1['nombre']] != 0) {
-        $factura = $factura . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']] . "<br>";
+        $factura = $factura . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']] . "\n";
          
       }
     }
 
     
-    $factura = $factura . "total precio = $totalprecio <br><br><br>";
+    $factura = $factura . "total precio = $totalprecio \n\n\n";
     
 
     $_SESSION['factura'] = $factura;
@@ -110,7 +110,7 @@ function enviodatos()
 
     $sentenciaSQL = $conexion->prepare("UPDATE pedidos SET factura = '$factura' where id = $txtfact ;");
     $sentenciaSQL->execute();
-
+    include ("./correo.php");
 ?>
     <meta http-equiv="refresh" content="0;url=./pedidos.php">
 <?php

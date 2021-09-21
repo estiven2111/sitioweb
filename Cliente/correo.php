@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 require "../PHPMailer/src/Exception.php";
 require "../PHPMailer/src/PHPMailer.php";
 require "../PHPMailer/src/SMTP.php";
@@ -25,7 +25,7 @@ $oMail-> msgHTML($_SESSION['factura']);
 if(!$oMail->send()){
  echo $oMail->ErrorInfo;
 }*/
-
+//session_start();
 $correo = $_SESSION['factura'];
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -54,7 +54,8 @@ try {
     $mail->Body = $correo;
     $mail->send();
 
-    echo 'Te enviamos tu factura al correo registrado porfavor verifica tu bandeja <br> de entrada o en correos no deseados';
+    $_SESSION['mail'] = 'Te enviamos tu factura al correo registrado porfavor verifica tu bandeja <br> de entrada o en correos no deseados';
 } catch (Exception $e) {
-    echo 'A OCURRIDO UN ERROR FAVOR COMUNIQUESE CON TecnoEAM 3104964755';
+    
+    $_SESSION['mail'] = 'A OCURRIDO UN ERROR EN EL ENVIO DE SU CORREO <br> FAVOR COMUNIQUESE CON TecnoEAM 3104964755';
 }
