@@ -55,7 +55,7 @@ include("./template/cabecera.php"); ?>
     <div class="container" >
         <div class="row">
             <div class="col-12" style="margin-top:30px;">
-                <div class="title" style="  width:100%;">
+                <div class="title letra" style="  width:100%;">
                     <i><img src="img/logo.jpg" alt="#"style="height: 100px; width: 100%;" /></i>
                     <h2>Somos fabricantes.</h2>
                     <span>Somos mayoristas, distribuidores del gran sabor en Medellin.
@@ -69,12 +69,12 @@ include("./template/cabecera.php"); ?>
 
         <div class="row d-flex justify-content-center m-5">
             <div class="col-12">
-                <div class="" style="display: flex; flex-direction: column; align-items: center;">
-                    <h3>Tradición</h3>
+                <div class="title letra" style="display: flex; flex-direction: column; align-items: center;">
+                    <h3>Tradiciin</h3>
                     <p>Mas de 70 puntos en la Ciudad de Medellin compran nuestros productos,
                      Somos fabricantes<br> de todo tipo de pasteles, gran variedad de sabores,
-                      palitos de queso y más, Si quieres<br> conocer mas de nosoros, dale click al siguiente Boton. </p>
-                    <a class="btn btn-primary btn-lgbtn btn" href="./contacto.php">Contactanos <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                      palitos de queso y mas, Si quieres<br> conocer mas de nosoros, dale click al siguiente Boton. </p>
+                    <a class="btn btn-primary btn-lgbtn btn letra" href="./contacto.php">Contactanos <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
 

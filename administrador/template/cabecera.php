@@ -28,7 +28,7 @@
 
 <body>
   <?php $url = "http://" . $_SERVER['HTTP_HOST'] . "/sitioWeb" ?>
-  <div class="container">
+  <div class="container" style="margin-bottom:50px" >
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
@@ -38,7 +38,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav m-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-item nav-link" href="<?php echo $url; ?>/administrador/inicio.php">inicio</a>
             </li>

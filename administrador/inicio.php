@@ -1,5 +1,5 @@
 <?php 
-session_start();
+//session_start();
 include('./template/cabecera.php'); 
 include './config/verificar.php';
 //ini_set('session.save_path', $_SERVER['USUARIO'] . '/sesiones');

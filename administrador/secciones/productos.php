@@ -1,6 +1,6 @@
 
 <?php 
-session_start();
+//session_start();
 include("../config/verificar.php"); 
 include("../template/cabecera.php"); 
 include("./productosback.php"); 

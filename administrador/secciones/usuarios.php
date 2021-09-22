@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include("../template/cabecera.php");
 include("../config/verificar.php");
 
@@ -100,7 +100,7 @@ switch ($accion) {
     case "Borrar":
 
 
-
+         var_dump($txtNombre);
         $sentenciaSQL = $conexion->prepare("DELETE FROM usuario WHERE id=:id");
         $sentenciaSQL->bindparam(':id', $txtID);
         $sentenciaSQL->execute();

@@ -1,15 +1,17 @@
-<?php include("template/cabecera.php"); ?>
+<?php
+session_start();
+include("template/cabecera.php"); ?>
 
 
 <?php
-session_start();
+
 $_SESSION['USUARIO'] = "";
 $_SESSION['alerta'] = "";
 $txtCorreo = (isset($_POST['txtCorreo'])) ? $_POST['txtCorreo'] : "";
 $txtContrasenia = (isset($_POST['txtContrasenia'])) ? $_POST['txtContrasenia'] : "";
 $accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 
-echo nl2br("sun \n \n moon \n  \nsun \n moon");
+//echo nl2br("sun \n \n moon \n  \nsun \n moon");
 include("administrador/config/db.php");
 
 

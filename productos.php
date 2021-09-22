@@ -40,7 +40,7 @@ $listaProductos = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 <?php foreach ($listaProductos as $producto)   {  ?>
     <?php if($producto['imagen'] != "imagen.jpg") :?>
-    <div class="col-md-3">
+    <div class="col-lg-3 col-xs-8 col-sm-6">
         <div class="card">
           
             <img class="card-img-top" src="./img/<?php  echo $producto['imagen']; ?>" alt="" style="height:300px">

@@ -1,4 +1,5 @@
 <?php
+
  include("../administrador/config/verificar.php"); 
  include("template/cabecera.php"); 
  //include ('./correo.php');
@@ -72,7 +73,7 @@ $listaProductos=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 </form>
     <div style="text-align: center; border: 5px solid black; width: 50%; margin: 30px auto 30px auto; background: gray;">
         <?php echo isset($_SESSION['factura'])?nl2br($_SESSION['factura']):"";
-        echo isset($_SESSION['factura'])? "<br><br><a  class = 'btn btn-primary' href= '../PDFOK/reporte.php' > DESCARGAR </a>":"";
+        echo isset($_SESSION['factura'])? "<br><br><a  class = 'btn btn-primary' href= '../PDF/reporte.php?usu=2' > DESCARGAR </a>":"";
         echo isset($_SESSION['mail'])? "<br><br>".$_SESSION['mail']:"";
         
         //echo "<br><br>".$_SESSION['mail'];

@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include("../config/verificar.php");
 include("../template/cabecera.php");
 ?>
@@ -75,7 +75,7 @@ $factura = "";
                         $sentenciaSQL->execute();
                         $productos = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
                 ?>
-                        <meta http-equiv="refresh" content="0;url=./consulta.php">
+                        <meta http-equiv="refresh" content="0;url=./pedidos.php">
                         <?php
                         break;
 
@@ -105,11 +105,11 @@ $factura = "";
                                 <td style="vertical-align: middle;text-align: center;"><?php echo $listaProducto[$con]['usuario']; ?> </td>
 
                                 <td>
-                                    <form method="post">
+                                    <form method="post" >
                                         <input type="hidden" style="vertical-align: middle;text-align: center;" name="txtID" id="txtID" value="<?php echo $listaProducto[$con]['id']; ?>" />
                                         <input type="submit" style="vertical-align: middle;text-align: center;" name="accion" value="Seleccionar" class="btn btn-primary" />
                                         <input onclick="return confirm('ESTA SEGURO QUE DESEA ELIMINAR ESTE REGISTRO?')" 
-                                        type="submit" style="vertical-align: middle;text-align: center;" name="accion" value="borrar" id="enviar" class="btn btn-danger" />
+                                        type="submit" style="vertical-align: middle;text-align: center;" name="accion" value="borrar" id="enviartt" class="btn btn-danger" />
                                 </td>
                                 </form>
                 <?php
@@ -140,7 +140,13 @@ $factura = "";
         <div class="card-body">
 
             <?php
-            echo $factura;
+           
+            if($accion == 'Seleccionar'){
+                $_SESSION['factura'] =  $factura;
+                echo nl2br($factura);
+                echo isset($_SESSION['factura'])? "<br><br><a  class = 'btn btn-primary' href= '../../PDF/reporte.php?usu=1' target='blank' > DESCARGAR </a>":"";
+            }
+            
             ?>
         </div>
 

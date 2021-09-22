@@ -14,9 +14,9 @@ include("template/cabecera.php"); ?>
 
 <div class="container">
     <div class="row">
-        <div class="col-xl-6 col-sm-12 col-md-12 col-xs-12" style="text-align:justify;">
+        <div class="col-xl-6 col-sm-12 col-md-12 col-xs-12 letra" style="text-align:justify;">
             <p>Somos una empresa con una gran trayectoria, dedicados a distribuir productos como Empanadas, Pasteles, Palitos de queso y mas;
-                con una gran variedad de sabores que nos identifican con sabores unicos e inigualables, distrubuyendo en gran parte de la ciudad de Medellín
+                con una gran variedad de sabores que nos identifican con sabores unicos e inigualables, distrubuyendo en gran parte de la ciudad de Medellï¿½n
                 productos fritos y pre fritos, dando opciones a nuestros clientes de adquirir nuestros productos.
                 Si deseas disfrutar de nuestros sabores puedes encontrarnos en el barrio Boston, cerca al tran via.
                 Si deseas comprar al por mayor comunicate con nosotros, esteremos encantados de llevarte nuestros productos a la puerte de tu negocio.
