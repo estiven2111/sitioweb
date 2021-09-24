@@ -100,8 +100,8 @@ switch ($accion) {
     case "Borrar":
 
 
-         var_dump($txtNombre);
-        $sentenciaSQL = $conexion->prepare("DELETE FROM usuario WHERE id=:id");
+        var_dump($txtID);
+        $sentenciaSQL = $conexion->prepare("DELETE FROM usuarios WHERE id=:id");
         $sentenciaSQL->bindparam(':id', $txtID);
         $sentenciaSQL->execute();
 
@@ -129,7 +129,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                     <div class="col-xl-6 col-md-12 col-lg-6 col-xs-12">
 
                         <div class="form-group">
-                            <label>Rol Usuario  :</label>
+                            <label>Rol Usuario :</label>
                             <select name="txtRol_usuario">
                                 <option value="2">usuario</option>
                                 <option value="1">administrador</option>
@@ -146,7 +146,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="form-group">
                             <label>Contraseña:</label>
-                            <input type="text" class="form-control" name="txtContrasenia" required="required"  placeholder="Escribe la contraseña">
+                            <input type="text" class="form-control" name="txtContrasenia" required="required" placeholder="Escribe la contraseña">
                         </div>
 
                         <div class="form-group">
@@ -173,42 +173,68 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="col-6 col-sm-6  col-md-6 col-lg-3 col-xs-3" style=" border:2px solid gray; text-align: center; padding-top: 30px;">
 
-                        <fieldset> <!-- HORARIOS DIAS LUNES A SABADO -->
+                        <fieldset>
+                            <!-- HORARIOS DIAS LUNES A SABADO -->
                             <legend>Horario Lunes a Sabado</legend>
                             <div class="form-group" style=" justify-content: center">
                                 <label>APERTURA :</label><br>
                                 <select name="txtLSA" required="">
-                                    <option value="No">No</option> 
-                                    <option value="05:00 AM">05:00 AM</option>  <option value="06:00 AM">06:00 AM</option>  <option value="07:00 AM">07:00 AM</option>  <option value="08:00 AM">08:00 AM</option>
-                                    <option value="09:00 AM">09:00 AM</option>  <option value="10:00 AM">10:00 AM</option>  <option value="11:00 AM">11:00 AM</option>  <option value="12:00 AM">12:00 AM</option>
+                                    <option value="No">No</option>
+                                    <option value="05:00 AM">05:00 AM</option>
+                                    <option value="06:00 AM">06:00 AM</option>
+                                    <option value="07:00 AM">07:00 AM</option>
+                                    <option value="08:00 AM">08:00 AM</option>
+                                    <option value="09:00 AM">09:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="12:00 AM">12:00 AM</option>
                                 </select>
                                 <br>
                                 <label>CIERRE :</label><br>
                                 <select name="txtLSC">
-                                    <option value="No">No</option> 
-                                    <option value="03:00 PM">03:00 PM</option>  <option value="04:00 PM">04:00 PM</option>  <option value="05:00 PM">05:00 PM</option>  <option value="06:00 PM">06:00 PM</option>
-                                    <option value="07:00 PM">07:00 PM</option>  <option value="08:00 PM">08:00 PM</option>  <option value="09:00 PM">09:00 PM</option>  <option value="10:00 PM">10:00 PM</option>
+                                    <option value="No">No</option>
+                                    <option value="03:00 PM">03:00 PM</option>
+                                    <option value="04:00 PM">04:00 PM</option>
+                                    <option value="05:00 PM">05:00 PM</option>
+                                    <option value="06:00 PM">06:00 PM</option>
+                                    <option value="07:00 PM">07:00 PM</option>
+                                    <option value="08:00 PM">08:00 PM</option>
+                                    <option value="09:00 PM">09:00 PM</option>
+                                    <option value="10:00 PM">10:00 PM</option>
                                 </select>
 
                             </div>
 
                         </fieldset>
 
-                        <fieldset> <!-- HORARIOS DIAS DOMINGO -->
+                        <fieldset>
+                            <!-- HORARIOS DIAS DOMINGO -->
                             <legend>Horario Domingo</legend>
                             <div class="form-group">
                                 <label>APERTURA :</label><br>
-                                <select name="txtDA" >
-                                    <option value="No">No</option> 
-                                    <option value="05:00 AM">05:00 AM</option>  <option value="06:00 AM">06:00 AM</option>  <option value="07:00 AM">07:00 AM</option>  <option value="08:00 AM">08:00 AM</option>
-                                    <option value="09:00 AM">09:00 AM</option>  <option value="10:00 AM">10:00 AM</option>  <option value="11:00 AM">11:00 AM</option>  <option value="12:00 AM">12:00 AM</option>
+                                <select name="txtDA">
+                                    <option value="No">No</option>
+                                    <option value="05:00 AM">05:00 AM</option>
+                                    <option value="06:00 AM">06:00 AM</option>
+                                    <option value="07:00 AM">07:00 AM</option>
+                                    <option value="08:00 AM">08:00 AM</option>
+                                    <option value="09:00 AM">09:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="12:00 AM">12:00 AM</option>
                                 </select>
                                 <br>
                                 <label>CIERRE :</label><br>
                                 <select name="txtDC">
-                                    <option value="No">No</option> 
-                                    <option value="03:00 PM">03:00 PM</option>  <option value="04:00 PM">04:00 PM</option>  <option value="05:00 PM">05:00 PM</option>  <option value="06:00 PM">06:00 PM</option>
-                                    <option value="07:00 PM">07:00 PM</option>  <option value="08:00 PM">08:00 PM</option>  <option value="09:00 PM">09:00 PM</option>  <option value="10:00 PM">10:00 PM</option>
+                                    <option value="No">No</option>
+                                    <option value="03:00 PM">03:00 PM</option>
+                                    <option value="04:00 PM">04:00 PM</option>
+                                    <option value="05:00 PM">05:00 PM</option>
+                                    <option value="06:00 PM">06:00 PM</option>
+                                    <option value="07:00 PM">07:00 PM</option>
+                                    <option value="08:00 PM">08:00 PM</option>
+                                    <option value="09:00 PM">09:00 PM</option>
+                                    <option value="10:00 PM">10:00 PM</option>
                                 </select>
 
                             </div>
@@ -216,34 +242,48 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                     <div class="col-6 col-sm-6  col-md-6 col-lg-3 col-xs-3 " style=" border:2px solid gray; text-align: center; padding-top: 30px;">
                         </fieldset>
 
-                        <fieldset> <!-- HORARIOS DIAS FESTIVOS -->
+                        <fieldset>
+                            <!-- HORARIOS DIAS FESTIVOS -->
                             <legend>Horario Festivos</legend>
                             <div class="form-group">
                                 <label>APERTURA :</label><br>
                                 <select name="txtFA">
-                                    <option value="No">No</option> 
-                                    <option value="05:00 AM">05:00 AM</option>  <option value="06:00 AM">06:00 AM</option>  <option value="07:00 AM">07:00 AM</option>  <option value="08:00 AM">08:00 AM</option>
-                                    <option value="09:00 AM">09:00 AM</option>  <option value="10:00 AM">10:00 AM</option>  <option value="11:00 AM">11:00 AM</option>  <option value="12:00 AM">12:00 AM</option>
+                                    <option value="No">No</option>
+                                    <option value="05:00 AM">05:00 AM</option>
+                                    <option value="06:00 AM">06:00 AM</option>
+                                    <option value="07:00 AM">07:00 AM</option>
+                                    <option value="08:00 AM">08:00 AM</option>
+                                    <option value="09:00 AM">09:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="12:00 AM">12:00 AM</option>
                                 </select>
                                 <br>
                                 <label>CIERRE :</label><br>
                                 <select name="txtFC">
-                                    <option value="No">No</option> 
-                                    <option value="03:00 PM">03:00 PM</option>  <option value="04:00 PM">04:00 PM</option>  <option value="05:00 PM">05:00 PM</option>  <option value="06:00 PM">06:00 PM</option>
-                                    <option value="07:00 PM">07:00 PM</option>  <option value="08:00 PM">08:00 PM</option>  <option value="09:00 PM">09:00 PM</option>  <option value="10:00 PM">10:00 PM</option>
+                                    <option value="No">No</option>
+                                    <option value="03:00 PM">03:00 PM</option>
+                                    <option value="04:00 PM">04:00 PM</option>
+                                    <option value="05:00 PM">05:00 PM</option>
+                                    <option value="06:00 PM">06:00 PM</option>
+                                    <option value="07:00 PM">07:00 PM</option>
+                                    <option value="08:00 PM">08:00 PM</option>
+                                    <option value="09:00 PM">09:00 PM</option>
+                                    <option value="10:00 PM">10:00 PM</option>
                                 </select>
 
                             </div>
 
                         </fieldset>
 
-                        <fieldset> <!-- TODOS LOS DIAS -->
+                        <fieldset>
+                            <!-- TODOS LOS DIAS -->
                             <legend>Todos Los Dias</legend>
                             <div class="form-group">
                                 <label>24 Horas</label><br>
                                 <select name="txtTD">
-                                    <option value="No">No</option> 
-                                    <option value="SI">SI</option>  
+                                    <option value="No">No</option>
+                                    <option value="SI">SI</option>
                                 </select>
 
 
@@ -259,7 +299,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                         <button type="submit" name="accion" value="Agregar" class="btn btn-primary" style="width: 200px; text-align: center;">Registrar</button>
                     </div>
 
-                </div>  
+                </div>
 
             </form>
 
@@ -272,50 +312,53 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <div class="col-12">
-        <div class="table-responsive table-responsive-sm"> 
-            <table id="example"class="table table-bordered ">
+        <div class="table-responsive table-responsive-sm">
+            <table id="example" class="table table-bordered " >
                 <thead>
-                    <tr>
-                        <th>ROL</th>
-                        <th>Usuario</th>
-                        <th>Contraseña</th>
-                        <th>Supervisor</th>
-                        <th>Negocio</th>
-                        <th>Sector</th>
-                        <th>Numero</th>
-                        <th>Horario Lun-Sab</th>
-                        <th>Horario Domingo</th>
-                        <th>Horario Festivo</th>
-                        <th>24 Horas</th>
-                        <th>Acciones</th>
+                    <tr style="vertical-align: middle;text-align: center;">
+                        <th >ID</th>
+                        <th >ROL</th>
+                        <th >Usuario</th>
+                        <th >Contraseña</th>
+                        <th >Supervisor</th>
+                        <th >Negocio</th>
+                        <th >Sector</th>
+                        <th >Numero</th>
+                        <th >Horario Lun-Sab</th>
+                        <th >Horario Domingo</th>
+                        <th >Horario Festivo</th>
+                        <th >24 Horas</th>
+                        <th >Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
 
 
                     <?php foreach ($listaUsuarios as $usuarios) { ?>
-                        <tr>
-                            <td><?php echo $usuarios['rol_usuario']; ?></td>
-                            <td><?php echo $usuarios['usuario']; ?></td>
-                            <td><?php echo $usuarios['contrasena']; ?></td>
-                            <td><?php echo $usuarios['nom_supervisor']; ?></td>
-                            <td><?php echo $usuarios['nom_negocio']; ?></td>
-                            <td><?php echo $usuarios['sector']; ?></td>
-                            <td><?php echo $usuarios['num_contacto']; ?></td>
+                        <tr style="vertical-align: middle;text-align: center;">
+                        <td ><?php echo $usuarios['id']; ?></td>
+                            <td ><?php echo $usuarios['rol_usuario']; ?></td>
+                            <td ><?php echo $usuarios['usuario']; ?></td>
+                            <td ><?php echo $usuarios['contrasena']; ?></td>
+                            <td ><?php echo $usuarios['nom_supervisor']; ?></td>
+                            <td ><?php echo $usuarios['nom_negocio']; ?></td>
+                            <td ><?php echo $usuarios['sector']; ?></td>
+                            <td ><?php echo $usuarios['num_contacto']; ?></td>
 
-                            <td><?php echo $usuarios['hora_aper_lun_sab']; ?></td>
-                            <td><?php echo $usuarios['hora_aper_domingo']; ?></td>
-                            <td><?php echo $usuarios['hora_aper_festivos']; ?></td>
-                            <td><?php echo $usuarios['apertura_24H']; ?></td>
+                            <td ><?php echo $usuarios['hora_aper_lun_sab']; ?></td>
+                            <td ><?php echo $usuarios['hora_aper_domingo']; ?></td>
+                            <td ><?php echo $usuarios['hora_aper_festivos']; ?></td>
+                            <td ><?php echo $usuarios['apertura_24H']; ?></td>
 
 
 
                             <td>
                                 <form method="post">
 
-                                    <input type="hidden" name="txtID" id="txtID" value="<?php echo $usuarios['rol_usuario']; ?>"/>
-                                    <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary"/>
-                                    <input type="submit" name="accion" value="Borrar" class="btn btn-danger"/>
+                                    <input  type="hidden" name="txtID" id="txtID" value="<?php echo $usuarios['id']; ?>" />
+                                    <input  type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
+                                    <input  onclick="return confirm('ESTA SEGURO QUE DESEA ELIMINAR ESTE REGISTRO?')"  
+                                    type="submit" name="accion" value="Borrar" class="btn btn-danger" />
 
 
                                 </form>
@@ -336,8 +379,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <!-- datatables JS -->
-    <script type="text/javascript" src="datatables/datatables.min.js"></script>    
+    <script type="text/javascript" src="datatables/datatables.min.js"></script>
 
-    <script type="text/javascript" src="main.js"></script>  
+    <script type="text/javascript" src="main.js"></script>
     <?php include("../template/pie.php"); ?>
-

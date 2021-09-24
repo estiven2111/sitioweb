@@ -162,7 +162,7 @@ switch($accion){
                    
                       ?>  <meta http-equiv="refresh" content="0;url=./productos.php"> <?php
                        //header("Location:./productos.php");
-                   
+                  
                      break;
 
 

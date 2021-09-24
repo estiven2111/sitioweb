@@ -15,14 +15,14 @@ $factura = "";
 
 <div class="col-md-12">
     <div class="table-responsive table-responsive-sm">
-        <table id="example" class="table table-bordered ">
+        <table id="example" class="table table-bordered " style="vertical-align: middle;text-align: center;">
             <?php
             $sentenciaSQL = $conexion->prepare("SELECT * FROM productos");
             $sentenciaSQL->execute();
             $listaProductos = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <thead>
-                <tr>
+                <tr style="vertical-align: middle;text-align: center;">
                     <?php
                     $pru = "";
                     $nomarray = array();
@@ -34,11 +34,11 @@ $factura = "";
                     ?>
                         <th style=" width: 50px;  vertical-align: middle;text-align: center;"><?php echo $Productos['nombre'] ?> </th>
                     <?php } ?>
-                    <th style=" width: 80px; vertical-align: middle;text-align: center;">PRECIO</th>
-                    <th style=" width: 80px; vertical-align: middle;text-align: center;">FACTURA</th>
-                    <th style=" width: 100px; vertical-align: middle;text-align: center;">FECHA PEDIDO</th>
-                    <th style=" width: 50px; vertical-align: middle;text-align: center;">USUARIO</th>
-                    <th style=" width: 150px; vertical-align: middle;text-align: center;">ACCIONES</th>
+                    <th>PRECIO</th>
+                    <th>FACTURA</th>
+                    <th>FECHA PEDIDO</th>
+                    <th>USUARIO</th>
+                    <th>ACCIONES</th>
 
                 </tr>
             </thead>
@@ -99,17 +99,17 @@ $factura = "";
                                 $co++;
                             } else {
                             ?>
-                                <td style="vertical-align: middle;text-align: center;"><?php echo $listaProducto[$con]['total']; ?> </td>
-                                <td style="vertical-align: middle;text-align: center;"><?php echo $listaProducto[$con]['id']; ?> </td>
-                                <td style="vertical-align: middle;text-align: center;"><?php echo $listaProducto[$con]['Fecha_Pedido']; ?> </td>
-                                <td style="vertical-align: middle;text-align: center;"><?php echo $listaProducto[$con]['usuario']; ?> </td>
+                                <td ><?php echo $listaProducto[$con]['total']; ?> </td>
+                                <td ><?php echo $listaProducto[$con]['id']; ?> </td>
+                                <td ><?php echo $listaProducto[$con]['Fecha_Pedido']; ?> </td>
+                                <td ><?php echo $listaProducto[$con]['usuario']; ?> </td>
 
                                 <td>
                                     <form method="post" >
-                                        <input type="hidden" style="vertical-align: middle;text-align: center;" name="txtID" id="txtID" value="<?php echo $listaProducto[$con]['id']; ?>" />
-                                        <input type="submit" style="vertical-align: middle;text-align: center;" name="accion" value="Seleccionar" class="btn btn-primary" />
+                                        <input type="hidden"name="txtID" id="txtID" value="<?php echo $listaProducto[$con]['id']; ?>" />
+                                        <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
                                         <input onclick="return confirm('ESTA SEGURO QUE DESEA ELIMINAR ESTE REGISTRO?')" 
-                                        type="submit" style="vertical-align: middle;text-align: center;" name="accion" value="borrar" id="enviartt" class="btn btn-danger" />
+                                        type="submit"  name="accion" value="borrar" id="enviartt" class="btn btn-danger" />
                                 </td>
                                 </form>
                 <?php

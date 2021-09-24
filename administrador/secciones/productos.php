@@ -81,8 +81,8 @@ include("./productosback.php");
 <div class="table-responsive table-responsive-sm"> 
 <table id="example" class="table table-bordered ">
     <thead>
-        <tr>
-            <th>ID</th>
+        <tr style="vertical-align: middle;text-align: center;">
+            <th >ID</th>
             <th>Nombre</th>
             <th>Iva</th>
             <th>Descripcion</th>
@@ -93,8 +93,8 @@ include("./productosback.php");
     </thead>
     <tbody>
         <?php foreach($listaProductos as $productos) {?>
-        <tr>
-            <td><?php echo $productos['id']; ?></td>
+        <tr style="vertical-align: middle;text-align: center;">
+            <td ><?php echo $productos['id']; ?></td>
             <td><?php echo $productos['nombre']; ?></td>
             <td><?php echo $productos['iva']; ?></td>
             <td><?php echo $productos['descripcion']; ?></td>
