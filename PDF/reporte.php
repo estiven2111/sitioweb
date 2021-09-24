@@ -41,7 +41,7 @@ require "plantilla.php";
     //$pdf->Ln(1);
     //$pdf->Cell(190, 5,'DESCRIPCION',1,1,'C');
     //$pdf->Ln(4);
-    $pdf->Output("","Factura FabricaDelFrito",true);
+    $pdf->Output("","Factura Fabrica Desl Frito",true);
 
 
    /**$pdf->AliasNbPages();
