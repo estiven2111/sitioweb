@@ -2,7 +2,9 @@
 session_start();
 $_SESSION['USUARIO'] = "";
 $_SESSION['alerta'] = "";
-include("template/cabecera.php"); ?>
+//$_SESSION['mail'] = "";
+include("template/cabecera.php"); 
+?>
 
 <div class="">
     <h1 class="display-3">Contactanos</h1>
@@ -52,7 +54,7 @@ include("template/cabecera.php"); ?>
 
             <div style="display:flex; justify-content:center; width:100%" class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
 
-                <form class="main_form" style=" padding: 20px;">
+                <form class="main_form" style=" padding: 20px;" action="correo.php" method="POST">
                     <div class="row">
 
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -78,6 +80,15 @@ include("template/cabecera.php"); ?>
                     </div>
                 </form>
                 </br></br></br>
+            
             </div>
+            <div style="text-align: center; margin-bottom:30px;" class="letra">
+                <?php 
+                echo ((isset($_GET['env'])=="ok"))?"MENSAJE ENVIADO CON EXITO A LA FABRICA DEL FRITO NOS PONDREMOS EN CONTACTO": "";  
+              
+                ?>
+           </div>
 
-            <?php include("template/pie.php"); ?>
+            <?php
+            
+            include("template/pie.php"); ?>
