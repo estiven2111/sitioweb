@@ -10,7 +10,7 @@ require "../PHPMailer/src/SMTP.php";
 
 
 $correo = "Hola me llamo $nombre y mi telefono es $telefono \n mi correo es $email \n $mensaje";
-$envio=nl2br($correo);
+
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -38,7 +38,7 @@ try {
    
     $mail->isHTML(true);
     $mail->Subject = 'INTERES DE CLLIENTE EN FABRICA DEL FRITO';
-    $mail->body =$envio;
+    $mail->body =$correo;
     $mail->send();
 
     $_SESSION['mail'] = 'MENSAJE ENVIADO CON EXITO A LA FABRICA DEL FRITO NOS PONDREMOS EN CONTACTO ';

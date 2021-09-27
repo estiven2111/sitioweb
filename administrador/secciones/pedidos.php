@@ -150,6 +150,8 @@ $factura = "";
             ?>
         </div>
 
+        <a href="<?php echo $url; ?>/administrador/secciones/excelPedidos.php" target="blank" class="btn btn-primary btn-lg letra"> Descargar excel</a>
+
     </div>
 
 </div>

@@ -5,7 +5,7 @@ include("../config/verificar.php");
 
 $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
 $txtNombre = (isset($_POST['txtNombre'])) ? $_POST['txtNombre'] : "";
-$txtContrasenia = (isset($_POST['txtContrasenia'])) ? $_POST['txtContrasenia'] : "";
+$txtContrasena = (isset($_POST['txtContrasena'])) ? $_POST['txtContrasena'] : "";
 $txtRol_usuario = (isset($_POST['txtRol_usuario'])) ? $_POST['txtRol_usuario'] : "";
 $txtSupervisor = (isset($_POST['txtSupervisor'])) ? $_POST['txtSupervisor'] : "";
 $txtNegocio = (isset($_POST['txtNegocio'])) ? $_POST['txtNegocio'] : "";
@@ -69,8 +69,8 @@ switch ($accion) {
         $sentenciaSQL->execute();
 
 
-        $sentenciaSQL = $conexion->prepare("UPDATE  usuario SET contraseña=:contraseña WHERE id=:id");
-        $sentenciaSQL->bindparam(':contraseña', $txtContrasenia);
+        $sentenciaSQL = $conexion->prepare("UPDATE  usuario SET contrasena=:contrasena WHERE id=:id");
+        $sentenciaSQL->bindparam(':contrasena', $txtContrasena);
         $sentenciaSQL->bindparam(':id', $txtID);
         $sentenciaSQL->execute();
 
@@ -93,7 +93,7 @@ switch ($accion) {
 
 
         $txtNombre = $usuarios['nombre'];
-        $txtContrasenia = $usuarios['contraseña'];
+        $txtContrasena = $usuarios['contrasena'];
 
         break;
 
@@ -145,8 +145,8 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
                         <div class="form-group">
-                            <label>Contraseña:</label>
-                            <input type="text" class="form-control" name="txtContrasenia" required="required" placeholder="Escribe la contraseña">
+                            <label>Contrasena:</label>
+                            <input type="text" class="form-control" name="txtContrasena" required="required" placeholder="Escribe la contraseña">
                         </div>
 
                         <div class="form-group">
@@ -319,7 +319,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                         <th >ID</th>
                         <th >ROL</th>
                         <th >Usuario</th>
-                        <th >Contraseña</th>
+                        <th >Contrasena</th>
                         <th >Supervisor</th>
                         <th >Negocio</th>
                         <th >Sector</th>
@@ -336,7 +336,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                     <?php foreach ($listaUsuarios as $usuarios) { ?>
                         <tr style="vertical-align: middle;text-align: center;">
-                        <td ><?php echo $usuarios['id']; ?></td>
+                            
                             <td ><?php echo $usuarios['rol_usuario']; ?></td>
                             <td ><?php echo $usuarios['usuario']; ?></td>
                             <td ><?php echo $usuarios['contrasena']; ?></td>
@@ -370,7 +370,8 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                 </tbody>
             </table>
 
-        </div>
+        </div></br>
+        <a href="<?php echo $url; ?>/administrador/secciones/excelUsuarios.php" target="blank" class="btn btn-primary btn-lg letra"> Descargar excel</a>
     </div>
 
     <!-- jQuery, Popper.js, Bootstrap JS -->
