@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include("../template/cabecera.php");
 include("../config/verificar.php");
 
@@ -39,24 +39,24 @@ switch ($accion) {
 
     case "Agregar":
 
-      
+
         $sentenciaSQL = $conexion->prepare("SELECT usuario FROM usuarios where usuario = '$txtNombre' ");
         $sentenciaSQL->execute();
         $usuarios = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
         if ($usuarios['usuario']) {
             echo '<script> alert("EL NOMBRE DE USUARIO YA ESTA EN USO");</script>';
-        }else{
-            $aper_lun_sab = $txtLSA."--".$txtLSC;
-            $aper_Dom = $txtDA."--".$txtDC;
-            $aper_Fes = $txtFA."--".$txtFC;
-  
-            $sentenciaSQL = $conexion->prepare("INSERT INTO usuarios VALUES (null,".(int)$txtRol_usuario.", '$txtNombre', '$txtContrasenia', '$txtSupervisor', '$txtNegocio', '$txtNumero', '$txtSector','$txtDir' ,'$aper_lun_sab', '$aper_Dom', '$aper_Fes', '$txtTD' );");
-            
+        } else {
+            $aper_lun_sab = $txtLSA . "--" . $txtLSC;
+            $aper_Dom = $txtDA . "--" . $txtDC;
+            $aper_Fes = $txtFA . "--" . $txtFC;
+
+            $sentenciaSQL = $conexion->prepare("INSERT INTO usuarios VALUES (null," . (int)$txtRol_usuario . ", '$txtNombre', '$txtContrasenia', '$txtSupervisor', '$txtNegocio', '$txtNumero', '$txtSector','$txtDir' ,'$aper_lun_sab', '$aper_Dom', '$aper_Fes', '$txtTD' );");
+
             $sentenciaSQL->execute();
         }
 
 
-       
+
 
 
         //header("Location:usuarios.php");
@@ -102,7 +102,7 @@ switch ($accion) {
     case "Borrar":
 
 
-        
+
         $sentenciaSQL = $conexion->prepare("DELETE FROM usuarios WHERE id=:id");
         $sentenciaSQL->bindparam(':id', $txtID);
         $sentenciaSQL->execute();
@@ -344,7 +344,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                     <?php foreach ($listaUsuarios as $usuarios) { ?>
                         <tr style="vertical-align: middle;text-align: center;">
-                        <td><?php echo $usuarios['id']; ?></td>
+                            <td><?php echo $usuarios['id']; ?></td>
                             <td><?php echo $usuarios['rol_usuario']; ?></td>
                             <td><?php echo $usuarios['usuario']; ?></td>
                             <td><?php echo $usuarios['contrasena']; ?></td>
@@ -366,8 +366,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                                     <input type="hidden" name="txtID" id="txtID" value="<?php echo $usuarios['id']; ?>" />
                                     <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
-                                    <input onclick="return confirm('ESTA SEGURO QUE DESEA ELIMINAR ESTE REGISTRO?')"  
-                                    type="submit" name="accion" value="Borrar" class="btn btn-danger" />
+                                    <input onclick="return confirm('ESTA SEGURO QUE DESEA ELIMINAR ESTE REGISTRO?')" type="submit" name="accion" value="Borrar" class="btn btn-danger" />
 
 
                                 </form>
