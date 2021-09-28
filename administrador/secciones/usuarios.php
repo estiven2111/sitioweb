@@ -5,11 +5,12 @@ include("../config/verificar.php");
 
 $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
 $txtNombre = (isset($_POST['txtNombre'])) ? $_POST['txtNombre'] : "";
-$txtContrasena = (isset($_POST['txtContrasena'])) ? $_POST['txtContrasena'] : "";
+$txtContrasenia = (isset($_POST['txtContrasenia'])) ? $_POST['txtContrasenia'] : "";
 $txtRol_usuario = (isset($_POST['txtRol_usuario'])) ? $_POST['txtRol_usuario'] : "";
 $txtSupervisor = (isset($_POST['txtSupervisor'])) ? $_POST['txtSupervisor'] : "";
 $txtNegocio = (isset($_POST['txtNegocio'])) ? $_POST['txtNegocio'] : "";
 $txtSector = (isset($_POST['txtSector'])) ? $_POST['txtSector'] : "";
+$txtDir = (isset($_POST['txtDir'])) ? $_POST['txtDir'] : "";
 $txtNumero = (isset($_POST['txtNumero'])) ? $_POST['txtNumero'] : "";
 
 
@@ -38,6 +39,7 @@ switch ($accion) {
 
     case "Agregar":
 
+      
         $sentenciaSQL = $conexion->prepare("SELECT usuario FROM usuarios where usuario = '$txtNombre' ");
         $sentenciaSQL->execute();
         $usuarios = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
@@ -48,13 +50,13 @@ switch ($accion) {
             $aper_Dom = $txtDA."--".$txtDC;
             $aper_Fes = $txtFA."--".$txtFC;
   
-            $sentenciaSQL = $conexion->prepare("INSERT INTO usuarios VALUES (null,".(int)$txtRol_usuario.", '$txtNombre', '$txtContrasena', '$txtSupervisor', '$txtNegocio', '$txtNumero', '$txtSector', '$aper_lun_sab', '$aper_Dom', '$aper_Fes', '$txtTD' );");
+            $sentenciaSQL = $conexion->prepare("INSERT INTO usuarios VALUES (null,".(int)$txtRol_usuario.", '$txtNombre', '$txtContrasenia', '$txtSupervisor', '$txtNegocio', '$txtNumero', '$txtSector','$txtDir' ,'$aper_lun_sab', '$aper_Dom', '$aper_Fes', '$txtTD' );");
             
             $sentenciaSQL->execute();
         }
 
-         
-         
+
+       
 
 
         //header("Location:usuarios.php");
@@ -69,8 +71,8 @@ switch ($accion) {
         $sentenciaSQL->execute();
 
 
-        $sentenciaSQL = $conexion->prepare("UPDATE  usuario SET contrasena=:contrasena WHERE id=:id");
-        $sentenciaSQL->bindparam(':contrasena', $txtContrasena);
+        $sentenciaSQL = $conexion->prepare("UPDATE  usuario SET contraseña=:contraseña WHERE id=:id");
+        $sentenciaSQL->bindparam(':contraseña', $txtContrasenia);
         $sentenciaSQL->bindparam(':id', $txtID);
         $sentenciaSQL->execute();
 
@@ -93,14 +95,14 @@ switch ($accion) {
 
 
         $txtNombre = $usuarios['nombre'];
-        $txtContrasena = $usuarios['contrasena'];
+        $txtContrasenia = $usuarios['contraseña'];
 
         break;
 
     case "Borrar":
 
 
-        var_dump($txtID);
+        
         $sentenciaSQL = $conexion->prepare("DELETE FROM usuarios WHERE id=:id");
         $sentenciaSQL->bindparam(':id', $txtID);
         $sentenciaSQL->execute();
@@ -145,8 +147,8 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
                         <div class="form-group">
-                            <label>Contrasena:</label>
-                            <input type="text" class="form-control" name="txtContrasena" required="required" placeholder="Escribe la contraseña">
+                            <label>Contraseña:</label>
+                            <input type="text" class="form-control" name="txtContrasenia" required="required" placeholder="Escribe la contraseña">
                         </div>
 
                         <div class="form-group">
@@ -162,6 +164,11 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                         <div class="form-group">
                             <label>Sector:</label>
                             <input type="text" class="form-control" name="txtSector" placeholder="Enque sector estas ubicado">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Direccion:</label>
+                            <input type="text" class="form-control" name="txtDir" placeholder="Direccion Del Negocio">
                         </div>
 
                         <div class="form-group">
@@ -313,22 +320,23 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="col-12">
         <div class="table-responsive table-responsive-sm">
-            <table id="example" class="table table-bordered " >
+            <table id="example" class="table table-bordered " style="vertical-align: middle;text-align: center;">
                 <thead>
                     <tr style="vertical-align: middle;text-align: center;">
-                        <th >ID</th>
-                        <th >ROL</th>
-                        <th >Usuario</th>
-                        <th >Contrasena</th>
-                        <th >Supervisor</th>
-                        <th >Negocio</th>
-                        <th >Sector</th>
-                        <th >Numero</th>
-                        <th >Horario Lun-Sab</th>
-                        <th >Horario Domingo</th>
-                        <th >Horario Festivo</th>
-                        <th >24 Horas</th>
-                        <th >Acciones</th>
+                        <th>ID</th>
+                        <th>ROL</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Supervisor</th>
+                        <th>Negocio</th>
+                        <th>Sector</th>
+                        <th>Direccion</th>
+                        <th>Numero</th>
+                        <th>Horario Lun-Sab</th>
+                        <th>Horario Domingo</th>
+                        <th>Horario Festivo</th>
+                        <th>24 Horas</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -336,28 +344,29 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                     <?php foreach ($listaUsuarios as $usuarios) { ?>
                         <tr style="vertical-align: middle;text-align: center;">
-                            
-                            <td ><?php echo $usuarios['rol_usuario']; ?></td>
-                            <td ><?php echo $usuarios['usuario']; ?></td>
-                            <td ><?php echo $usuarios['contrasena']; ?></td>
-                            <td ><?php echo $usuarios['nom_supervisor']; ?></td>
-                            <td ><?php echo $usuarios['nom_negocio']; ?></td>
-                            <td ><?php echo $usuarios['sector']; ?></td>
-                            <td ><?php echo $usuarios['num_contacto']; ?></td>
+                        <td><?php echo $usuarios['id']; ?></td>
+                            <td><?php echo $usuarios['rol_usuario']; ?></td>
+                            <td><?php echo $usuarios['usuario']; ?></td>
+                            <td><?php echo $usuarios['contrasena']; ?></td>
+                            <td><?php echo $usuarios['nom_supervisor']; ?></td>
+                            <td><?php echo $usuarios['nom_negocio']; ?></td>
+                            <td><?php echo $usuarios['sector']; ?></td>
+                            <td><?php echo $usuarios['Direccion']; ?></td>
+                            <td><?php echo $usuarios['num_contacto']; ?></td>
 
-                            <td ><?php echo $usuarios['hora_aper_lun_sab']; ?></td>
-                            <td ><?php echo $usuarios['hora_aper_domingo']; ?></td>
-                            <td ><?php echo $usuarios['hora_aper_festivos']; ?></td>
-                            <td ><?php echo $usuarios['apertura_24H']; ?></td>
+                            <td><?php echo $usuarios['hora_aper_lun_sab']; ?></td>
+                            <td><?php echo $usuarios['hora_aper_domingo']; ?></td>
+                            <td><?php echo $usuarios['hora_aper_festivos']; ?></td>
+                            <td><?php echo $usuarios['apertura_24H']; ?></td>
 
 
 
                             <td>
                                 <form method="post">
 
-                                    <input  type="hidden" name="txtID" id="txtID" value="<?php echo $usuarios['id']; ?>" />
-                                    <input  type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
-                                    <input  onclick="return confirm('ESTA SEGURO QUE DESEA ELIMINAR ESTE REGISTRO?')"  
+                                    <input type="hidden" name="txtID" id="txtID" value="<?php echo $usuarios['id']; ?>" />
+                                    <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
+                                    <input onclick="return confirm('ESTA SEGURO QUE DESEA ELIMINAR ESTE REGISTRO?')"  
                                     type="submit" name="accion" value="Borrar" class="btn btn-danger" />
 
 
@@ -370,8 +379,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                 </tbody>
             </table>
 
-        </div></br>
-        <a href="<?php echo $url; ?>/administrador/secciones/excelUsuarios.php" target="blank" class="btn btn-primary btn-lg letra"> Descargar excel</a>
+        </div>
     </div>
 
     <!-- jQuery, Popper.js, Bootstrap JS -->

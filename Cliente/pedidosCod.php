@@ -93,10 +93,17 @@ function enviodatos()
     }
     //$factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** <br> <br>" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "<br> USUARIO  " . $_SESSION['USUARIO'] . "<br><br><br>";
     $factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** \n\n" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "\n USUARIO  " . $_SESSION['USUARIO'] . "\n\n";
+    
     foreach ($listaProductos as $imprimir) {
+      $sentenciaSQL = $conexion->prepare("SELECT * FROM productos WHERE nombre = '".$imprimir['nombre']."';");
+      $sentenciaSQL->execute();
+      $pre_prod = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+      $valound = $pre_prod[0]['precio'];
+     
       $nomp1 = str_replace(' ', '_', $imprimir);
+      $subtotal = (int) $_POST[$nomp1['nombre']] * $valound;
       if ((int)$_POST[$nomp1['nombre']] != 0) {
-        $factura = $factura . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']] . "\n";
+        $factura = $factura . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']] ." valor = $valound subtotal = $subtotal"."\n";
          
       }
     }
@@ -114,7 +121,7 @@ function enviodatos()
 ?>
     <meta http-equiv="refresh" content="0;url=./pedidos.php">
 <?php
-
+  
   }
 }
 

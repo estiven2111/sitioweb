@@ -32,7 +32,7 @@ include("template/cabecera.php");
                                 <a href="https://www.google.com/maps/place/La+Fabrica+Del+Frito/@6.2439373,-75.5637075,16z/data=!4m5!3m4!1s0x8e4429dba2c6eb4f:0x907cf337ef7fd17d!8m2!3d6.2444146!4d-75.5595152?hl=es-CO">
                                 </br>Medellin, Colombia</a>
                             </li> </br>
-                            <li class="dinone"><img style="margin-right: 15px;height: 80px;position: relative;top: 5px;" src="IMAGENES/whatsapp.png" alt=""><a href="https://wa.link/aul37g"></br> Whatsapp</a></li>
+                            <li class="dinone"><img style="margin-right: 15px;height: 80px;position: relative;top: 5px;" src="IMAGENES/whatsapp.png" alt=""><a href="https://wa.link/najfaf"></br> Whatsapp</a></li>
 
                         </ul>
                     </div>
