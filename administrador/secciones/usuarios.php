@@ -43,18 +43,18 @@ switch ($accion) {
         $usuarios = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
         if ($usuarios['usuario']) {
             echo '<script> alert("EL NOMBRE DE USUARIO YA ESTA EN USO");</script>';
+        }else{
+            $aper_lun_sab = $txtLSA."--".$txtLSC;
+            $aper_Dom = $txtDA."--".$txtDC;
+            $aper_Fes = $txtFA."--".$txtFC;
+  
+            $sentenciaSQL = $conexion->prepare("INSERT INTO usuarios VALUES (null,".(int)$txtRol_usuario.", '$txtNombre', '$txtContrasena', '$txtSupervisor', '$txtNegocio', '$txtNumero', '$txtSector', '$aper_lun_sab', '$aper_Dom', '$aper_Fes', '$txtTD' );");
+            
+            $sentenciaSQL->execute();
         }
 
-        /* $aper_lun_sab = $txtLSA."--".$txtLSC;
-          $aper_Dom = $txtDA."--".$txtDC;
-          $aper_Fes = $txtFA."--".$txtFC;
-
-          $sentenciaSQL = $conexion->prepare("INSERT INTO usuarios VALUES (".(int)$txtRol_usuario.", '$txtNombre', '$txtContrasenia', '$txtSupervisor', '$txtNegocio', '$txtNumero', '$txtSector', '$aper_lun_sab', '$aper_Dom', '$aper_Fes', '$txtTD' );");
-          $sentenciaSQL->bindparam(':nombre', $txtNombre);
-          $sentenciaSQL->bindparam(':contraseña', $txtContrasenia);
-          $sentenciaSQL->bindparam(':rol_usuario', $nombreArchivo);
-          $sentenciaSQL->execute();
-         */
+         
+         
 
 
         //header("Location:usuarios.php");
