@@ -169,7 +169,7 @@ switch($accion){
 }
          
 
-$sentenciaSQL= $conexion->prepare("SELECT * FROM productos");
+$sentenciaSQL= $conexion->prepare("SELECT * FROM productos ORDER BY id ASC");
 $sentenciaSQL->execute();
 $listaProductos=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 

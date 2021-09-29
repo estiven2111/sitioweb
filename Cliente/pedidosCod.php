@@ -93,7 +93,7 @@ function enviodatos()
       $num_fac[0]['id'] = "0";
     }
     //$factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** <br> <br>" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "<br> USUARIO  " . $_SESSION['USUARIO'] . "<br><br><br>";
-    $factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** \n\n" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "\n USUARIO  " . $_SESSION['USUARIO'] . "\n\n";
+    $factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** \n\n" . "Fecha Pedido  " .date('Y-m-d'). "\n USUARIO  " . $_SESSION['USUARIO'] . "\n\n";
 
     foreach ($listaProductos as $imprimir) {
       $sentenciaSQL = $conexion->prepare("SELECT * FROM productos WHERE nombre = '" . $imprimir['nombre'] . "';");
@@ -133,9 +133,9 @@ function enviodatos()
     $total_diario1 = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     $fecha = date('Y-m-d');
     $diario = $total_diario1[0]['Diario'];
-
+var_dump($fecha);
     if ($total_diario == false) {
-      $sentenciaSQL = $conexion->prepare("INSERT INTO registro VALUES (NULL, '$fecha', '$diario', '', ''); ");
+      $sentenciaSQL = $conexion->prepare("INSERT INTO registro VALUES (NULL, '$fecha', '$diario'); ");
       $sentenciaSQL->execute();
     } else {
       $sentenciaSQL = $conexion->prepare("UPDATE registro SET Diario = '" . $diario . "' WHERE fecha = '" . date('Y-m-d') . "';");

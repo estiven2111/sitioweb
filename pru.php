@@ -1,6 +1,6 @@
 <?php
  date_default_timezone_set('America/Bogota');
- /*// // SELECT SUM(total) as totales from pedidos where Fecha_Pedido = '2021-09-24' or Fecha_Pedido = '2021-09-22' 
+ // // SELECT SUM(total) as totales from pedidos where Fecha_Pedido = '2021-09-24' or Fecha_Pedido = '2021-09-22' 
  include("./administrador/config/db.php");
  
  $sentenciaSQL = $conexion->prepare("SELECT SUM(total) as totales from pedidos where Fecha_Pedido = '2021-09-24'");
@@ -38,7 +38,7 @@
  
  $DateAndTime = date('m-d-Y h:i:s a', time());  
  
- echo "hora actual $DateAndTime";*/
+ echo "hora actual $DateAndTime";
  
  include("./administrador/config/db.php");
  $sentenciaSQL = $conexion->prepare("SELECT * FROM registro where fecha = '".date('Y-m-d')."';");

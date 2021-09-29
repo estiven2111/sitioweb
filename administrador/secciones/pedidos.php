@@ -17,7 +17,7 @@ $factura = "";
     <div class="table-responsive table-responsive-sm">
         <table id="example" class="table table-bordered " style="vertical-align: middle;text-align: center;">
             <?php
-            $sentenciaSQL = $conexion->prepare("SELECT * FROM productos");
+            $sentenciaSQL = $conexion->prepare("SELECT * FROM productos ORDER BY id ASC");
             $sentenciaSQL->execute();
             $listaProductos = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
             ?>
@@ -73,38 +73,38 @@ $factura = "";
                         $sentenciaSQL->bindparam(':id', $txtID);
                         $sentenciaSQL->execute();
                         $productos = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
-                         var_dump($productos);
+                         var_dump($productos['Fecha_Pedido']);
 
 
-                       /* $sentenciaSQL = $conexion->prepare("DELETEE FROM pedidos WHERE id=:id");
+                        $sentenciaSQL = $conexion->prepare("DELETE FROM pedidos WHERE id=:id");
                         $sentenciaSQL->bindparam(':id', $txtID);
                         $sentenciaSQL->execute();
-                        $productos = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
-                         var_dump($productos);*/
+                        $productos2 = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
+                         
 
                         /** -----------------SUMAR PEDIDOS DIARIOS-----------------------------  */
 
-/*
 
-                        $sentenciaSQL = $conexion->prepare("SELECT * FROM registro where fecha = '" . date('Y-m-d') . "';");
+
+                        $sentenciaSQL = $conexion->prepare("SELECT * FROM registro where fecha = '" . $productos['Fecha_Pedido'] . "';");
                         $sentenciaSQL->execute();
                         $total_diario = $sentenciaSQL->fetch(PDO::FETCH_ASSOC);
 
-                        $sentenciaSQL = $conexion->prepare("SELECT SUM(total) as Diario from pedidos where Fecha_Pedido = '" . date('Y-m-d') . "';");
+                        $sentenciaSQL = $conexion->prepare("SELECT SUM(total) as Diario from pedidos where Fecha_Pedido = '" . $productos['Fecha_Pedido'] . "';");
                         $sentenciaSQL->execute();
                         $total_diario1 = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
-                        $fecha = date('Y-m-d');
+                        $fecha = $productos['Fecha_Pedido'];
                         $diario = $total_diario1[0]['Diario'];
 
                         if ($total_diario == false) {
                             $sentenciaSQL = $conexion->prepare("INSERT INTO registro VALUES (NULL, '$fecha', '$diario', '', ''); ");
                             $sentenciaSQL->execute();
                         } else {
-                            $sentenciaSQL = $conexion->prepare("UPDATE registro SET Diario = '" . $diario . "' WHERE fecha = '" . date('Y-m-d') . "';");
+                            $sentenciaSQL = $conexion->prepare("UPDATE registro SET Diario = '" . $diario . "' WHERE fecha = '" . $productos['Fecha_Pedido'] . "';");
                             $sentenciaSQL->execute();
-                        }*/
+                        }
                 ?>
-                        <!--<meta http-equiv="refresh" content="0;url=./pedidos.php">-->
+                        <meta http-equiv="refresh" content="0;url=./pedidos.php">
                         <?php
                         break;
 

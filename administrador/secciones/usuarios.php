@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include("../template/cabecera.php");
 include("../config/verificar.php");
 
@@ -112,7 +112,7 @@ switch ($accion) {
         break;
 }
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM usuarios");
+$sentenciaSQL = $conexion->prepare("SELECT * FROM usuarios ORDER BY id ASC");
 $sentenciaSQL->execute();
 $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 ?>
