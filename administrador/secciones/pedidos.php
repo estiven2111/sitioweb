@@ -69,13 +69,42 @@ $factura = "";
                         $txtfecha = $productossel['Fecha_Pedido'];
                         break;
                     case "borrar":
-
-                        $sentenciaSQL = $conexion->prepare("DELETE FROM pedidos WHERE id=:id");
+                        $sentenciaSQL = $conexion->prepare("SELECT * FROM pedidos WHERE id=:id");
                         $sentenciaSQL->bindparam(':id', $txtID);
                         $sentenciaSQL->execute();
                         $productos = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
+                         var_dump($productos);
+
+
+                       /* $sentenciaSQL = $conexion->prepare("DELETEE FROM pedidos WHERE id=:id");
+                        $sentenciaSQL->bindparam(':id', $txtID);
+                        $sentenciaSQL->execute();
+                        $productos = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
+                         var_dump($productos);*/
+
+                        /** -----------------SUMAR PEDIDOS DIARIOS-----------------------------  */
+
+/*
+
+                        $sentenciaSQL = $conexion->prepare("SELECT * FROM registro where fecha = '" . date('Y-m-d') . "';");
+                        $sentenciaSQL->execute();
+                        $total_diario = $sentenciaSQL->fetch(PDO::FETCH_ASSOC);
+
+                        $sentenciaSQL = $conexion->prepare("SELECT SUM(total) as Diario from pedidos where Fecha_Pedido = '" . date('Y-m-d') . "';");
+                        $sentenciaSQL->execute();
+                        $total_diario1 = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+                        $fecha = date('Y-m-d');
+                        $diario = $total_diario1[0]['Diario'];
+
+                        if ($total_diario == false) {
+                            $sentenciaSQL = $conexion->prepare("INSERT INTO registro VALUES (NULL, '$fecha', '$diario', '', ''); ");
+                            $sentenciaSQL->execute();
+                        } else {
+                            $sentenciaSQL = $conexion->prepare("UPDATE registro SET Diario = '" . $diario . "' WHERE fecha = '" . date('Y-m-d') . "';");
+                            $sentenciaSQL->execute();
+                        }*/
                 ?>
-                        <meta http-equiv="refresh" content="0;url=./pedidos.php">
+                        <!--<meta http-equiv="refresh" content="0;url=./pedidos.php">-->
                         <?php
                         break;
 
@@ -99,17 +128,16 @@ $factura = "";
                                 $co++;
                             } else {
                             ?>
-                                <td ><?php echo $listaProducto[$con]['total']; ?> </td>
-                                <td ><?php echo $listaProducto[$con]['id']; ?> </td>
-                                <td ><?php echo $listaProducto[$con]['Fecha_Pedido']; ?> </td>
-                                <td ><?php echo $listaProducto[$con]['usuario']; ?> </td>
+                                <td><?php echo $listaProducto[$con]['total']; ?> </td>
+                                <td><?php echo $listaProducto[$con]['id']; ?> </td>
+                                <td><?php echo $listaProducto[$con]['Fecha_Pedido']; ?> </td>
+                                <td><?php echo $listaProducto[$con]['usuario']; ?> </td>
 
                                 <td>
-                                    <form method="post" >
-                                        <input type="hidden"name="txtID" id="txtID" value="<?php echo $listaProducto[$con]['id']; ?>" />
+                                    <form method="post">
+                                        <input type="hidden" name="txtID" id="txtID" value="<?php echo $listaProducto[$con]['id']; ?>" />
                                         <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
-                                        <input onclick="return confirm('ESTA SEGURO QUE DESEA ELIMINAR ESTE REGISTRO?')" 
-                                        type="submit"  name="accion" value="borrar" id="enviartt" class="btn btn-danger" />
+                                        <input onclick="return confirm('ESTA SEGURO QUE DESEA ELIMINAR ESTE REGISTRO?')" type="submit" name="accion" value="borrar" id="enviartt" class="btn btn-danger" />
                                 </td>
                                 </form>
                 <?php
@@ -140,13 +168,13 @@ $factura = "";
         <div class="card-body">
 
             <?php
-           
-            if($accion == 'Seleccionar'){
+
+            if ($accion == 'Seleccionar') {
                 $_SESSION['factura'] =  $factura;
                 echo nl2br($factura);
-                echo isset($_SESSION['factura'])? "<br><br><a  class = 'btn btn-primary' href= '../../PDF/reporte.php?usu=1' target='blank' > DESCARGAR </a>":"";
+                echo isset($_SESSION['factura']) ? "<br><br><a  class = 'btn btn-primary' href= '../../PDF/reporte.php?usu=1' target='blank' > DESCARGAR </a>" : "";
             }
-            
+
             ?>
         </div>
 
@@ -155,14 +183,14 @@ $factura = "";
     </div>
 
 </div>
- <!-- jQuery, Popper.js, Bootstrap JS -->
- <script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="popper/popper.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-      
-    <!-- datatables JS -->
-    <script type="text/javascript" src="datatables/datatables.min.js"></script>    
-     
-    <script type="text/javascript" src="main.js"></script>  
+<!-- jQuery, Popper.js, Bootstrap JS -->
+<script src="jquery/jquery-3.3.1.min.js"></script>
+<script src="popper/popper.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<!-- datatables JS -->
+<script type="text/javascript" src="datatables/datatables.min.js"></script>
+
+<script type="text/javascript" src="main.js"></script>
 
 <?php include("../template/pie.php"); ?>

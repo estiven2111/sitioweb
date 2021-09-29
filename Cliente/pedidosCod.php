@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/bogota');
 if (!empty($_POST)) {
   session_start();
 
@@ -93,35 +94,60 @@ function enviodatos()
     }
     //$factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** <br> <br>" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "<br> USUARIO  " . $_SESSION['USUARIO'] . "<br><br><br>";
     $factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** \n\n" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "\n USUARIO  " . $_SESSION['USUARIO'] . "\n\n";
-    
+
     foreach ($listaProductos as $imprimir) {
-      $sentenciaSQL = $conexion->prepare("SELECT * FROM productos WHERE nombre = '".$imprimir['nombre']."';");
+      $sentenciaSQL = $conexion->prepare("SELECT * FROM productos WHERE nombre = '" . $imprimir['nombre'] . "';");
       $sentenciaSQL->execute();
       $pre_prod = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
       $valound = $pre_prod[0]['precio'];
-     
+
       $nomp1 = str_replace(' ', '_', $imprimir);
       $subtotal = (int) $_POST[$nomp1['nombre']] * $valound;
       if ((int)$_POST[$nomp1['nombre']] != 0) {
-        $factura = $factura . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']] ." valor = $valound subtotal = $subtotal"."\n";
-         
+        $factura = $factura . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']] . " valor = $valound subtotal = $subtotal" . "\n";
       }
     }
 
-    
+
     $factura = $factura . "total precio = $totalprecio \n\n";
-    
+
 
     $_SESSION['factura'] = $factura;
     $txtfact = (int)$num_fac[$tfact]['id'];
 
     $sentenciaSQL = $conexion->prepare("UPDATE pedidos SET factura = '$factura' where id = $txtfact ;");
     $sentenciaSQL->execute();
-    include ("./correo.php");
+    include("./correo.php");
+
+
+    /** -----------------SUMAR PEDIDOS DIARIOS-----------------------------  */
+
+
+
+    $sentenciaSQL = $conexion->prepare("SELECT * FROM registro where fecha = '" . date('Y-m-d') . "';");
+    $sentenciaSQL->execute();
+    $total_diario = $sentenciaSQL->fetch(PDO::FETCH_ASSOC);
+
+    $sentenciaSQL = $conexion->prepare("SELECT SUM(total) as Diario from pedidos where Fecha_Pedido = '" . date('Y-m-d') . "';");
+    $sentenciaSQL->execute();
+    $total_diario1 = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+    $fecha = date('Y-m-d');
+    $diario = $total_diario1[0]['Diario'];
+
+    if ($total_diario == false) {
+      $sentenciaSQL = $conexion->prepare("INSERT INTO registro VALUES (NULL, '$fecha', '$diario', '', ''); ");
+      $sentenciaSQL->execute();
+    } else {
+      $sentenciaSQL = $conexion->prepare("UPDATE registro SET Diario = '" . $diario . "' WHERE fecha = '" . date('Y-m-d') . "';");
+      $sentenciaSQL->execute();
+    }
+
+
+
 ?>
     <meta http-equiv="refresh" content="0;url=./pedidos.php">
 <?php
-  
+
   }
 }
 
