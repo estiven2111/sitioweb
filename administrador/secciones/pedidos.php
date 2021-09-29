@@ -73,14 +73,14 @@ $factura = "";
                         $sentenciaSQL->bindparam(':id', $txtID);
                         $sentenciaSQL->execute();
                         $productos = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
-                         var_dump($productos['Fecha_Pedido']);
+                        var_dump($productos['Fecha_Pedido']);
 
 
                         $sentenciaSQL = $conexion->prepare("DELETE FROM pedidos WHERE id=:id");
                         $sentenciaSQL->bindparam(':id', $txtID);
                         $sentenciaSQL->execute();
                         $productos2 = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
-                         
+
 
                         /** -----------------SUMAR PEDIDOS DIARIOS-----------------------------  */
 
@@ -157,7 +157,9 @@ $factura = "";
 
 
 </div>
-
+<div style="text-align: center; margin:40px 0px 40px 0px; ">
+    <a href="./excelPedidos.php" class="btn btn-primary" style="width: 200px; height: 50px; text-align: center; font-size: 20px;">Descargar Registro</a>
+</div>
 <div class="col-md-12" style="text-align: center;">
 
     <div class="card">
@@ -178,11 +180,12 @@ $factura = "";
             ?>
         </div>
 
-        <a href="<?php echo $url; ?>/administrador/secciones/excelPedidos.php" target="blank" class="btn btn-primary btn-lg letra"> Descargar excel</a>
+
 
     </div>
 
 </div>
+
 <!-- jQuery, Popper.js, Bootstrap JS -->
 <script src="jquery/jquery-3.3.1.min.js"></script>
 <script src="popper/popper.min.js"></script>

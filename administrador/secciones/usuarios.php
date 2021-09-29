@@ -320,6 +320,8 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="col-12">
         <div class="table-responsive table-responsive-sm">
+            <?php
+            ?>
             <table id="example" class="table table-bordered " style="vertical-align: middle;text-align: center;">
                 <thead>
                     <tr style="vertical-align: middle;text-align: center;">
@@ -378,6 +380,9 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                 </tbody>
             </table>
 
+        </div>
+        <div style="margin: 50px; text-align: center; ">
+                        <a href="./excelUsuario.php" class="btn btn-primary" style="width: 200px; height: 50px; text-align: center; font-size: 20px;">Descargar Registro</a>
         </div>
     </div>
 
