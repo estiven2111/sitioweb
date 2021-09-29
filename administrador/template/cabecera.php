@@ -1,4 +1,5 @@
-<?php //session_start(); ?>
+<?php //session_start(); 
+?>
 
 <!DOCTYPE html>
 
@@ -20,15 +21,15 @@
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/styles.css">
-    <!--datables CSS básico-->
-    <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
-    <!--datables estilo bootstrap 4 CSS-->  
-    <link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+  <!--datables CSS básico-->
+  <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css" />
+  <!--datables estilo bootstrap 4 CSS-->
+  <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 </head>
 
 <body>
   <?php $url = "http://" . $_SERVER['HTTP_HOST'] . "/sitioWeb" ?>
-  <div class="container" style="margin-bottom:50px" >
+  <div class="container" style="margin-bottom:50px">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">

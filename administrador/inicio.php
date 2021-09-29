@@ -17,6 +17,7 @@ include './config/verificar.php';
             <a style="margin: 10px 10px 0px 0px;" class="btn btn-primary btn-lg" href="secciones/productos.php" role="button">PRODUCTOS</a>
             <a style="margin: 10px 10px 0px 0px;" class="btn btn-primary btn-lg" href="./secciones/pedidos.php" role="button">PEDIDOS</a>
             <a style="margin: 10px 10px 0px 0px;" class="btn btn-primary btn-lg" href="./secciones/usuarios.php" role="button">USUARIOS</a>
+            <a style="margin: 10px 10px 0px 0px;" class="btn btn-primary btn-lg" href="./secciones/Registros.php" role="button">REGISTROS</a>
         </p>
        </div>
 
