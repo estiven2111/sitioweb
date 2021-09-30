@@ -26,6 +26,15 @@ if(!$oMail->send()){
  echo $oMail->ErrorInfo;
 }*/
 //session_start();
+
+
+
+
+
+
+
+/*** okkokokoko */
+
 $correo = $_SESSION['factura'];
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -59,3 +68,5 @@ try {
     
     $_SESSION['mail'] = 'A OCURRIDO UN ERROR EN EL ENVIO DE SU CORREO <br> FAVOR COMUNIQUESE CON TecnoEAM 3104964755';
 }
+
+?>

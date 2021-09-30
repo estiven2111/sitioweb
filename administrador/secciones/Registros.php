@@ -86,45 +86,45 @@ include("./productosback.php");
                 </form>
 
                 <?php
-               if (isset($_POST['accion'])) {
+                if (isset($_POST['accion'])) {
 
 
-                $feInicio = (isset($_POST['inicio'])) ? $_POST['inicio'] : "";
-                $feFin = (isset($_POST['fin'])) ? $_POST['fin'] : "";
-               
-                $sentenciaSQL = $conexion->prepare("SELECT SUM(total) as Diario from pedidos where Fecha_Pedido BETWEEN '$feInicio' AND '$feFin' ");
-                $sentenciaSQL->execute();
-                $total_rango = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+                    $feInicio = (isset($_POST['inicio'])) ? $_POST['inicio'] : "";
+                    $feFin = (isset($_POST['fin'])) ? $_POST['fin'] : "";
 
-                 ?>
+                    $sentenciaSQL = $conexion->prepare("SELECT SUM(total) as Diario from pedidos where Fecha_Pedido BETWEEN '$feInicio' AND '$feFin' ");
+                    $sentenciaSQL->execute();
+                    $total_rango = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+                ?>
                     <div class="table-responsive table-responsive-sm">
-                    <table id="example" class="table table-bordered ">
-                        <thead>
-                            <tr style="vertical-align: middle;text-align: center;">
-                            <th>TOTAL ENTRE FECHA <?php echo $_POST['inicio']." Y LA FECHA ".$_POST['fin']; ?></th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            
-                           
-                            foreach ($total_rango as $total_rango) { ?>
+                        <table id="example" class="table table-bordered ">
+                            <thead>
                                 <tr style="vertical-align: middle;text-align: center;">
-                                    <td style="font-size: 50px;"><?php echo "Se Realizaron Ventas Por Un Valor Total De <b>$".$total_rango['Diario']."</b>"; ?></td>
-
+                                    <th>TOTAL ENTRE FECHA <?php echo $_POST['inicio'] . " Y LA FECHA " . $_POST['fin']; ?></th>
 
                                 </tr>
+                            </thead>
+                            <tbody>
+                                <?php
 
-                            <?php } ?>
 
-                        </tbody>
-                    </table>
-                </div>
+                                foreach ($total_rango as $total_rango) { ?>
+                                    <tr style="vertical-align: middle;text-align: center;">
+                                        <td style="font-size: 50px;"><?php echo "Se Realizaron Ventas Por Un Valor Total De <b>$" . $total_rango['Diario'] . "</b>"; ?></td>
 
-                <?php 
-            }?>
-            
+
+                                    </tr>
+
+                                <?php } ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                <?php
+                } ?>
+
             </div>
         </div>
 
@@ -132,7 +132,7 @@ include("./productosback.php");
 
     </div>
 
-    
+
 </div>
 
 
