@@ -382,7 +382,7 @@ $listaUsuarios = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
         </div>
         <div style="margin: 50px; text-align: center; ">
-                        <a href="./excelUsuario.php" class="btn btn-primary" style="width: 200px; height: 50px; text-align: center; font-size: 20px;">Descargar Registro</a>
+            <a href="./excelUsuario.php" class="btn btn-primary" style="width: 200px; height: 50px; text-align: center; font-size: 20px;">Descargar Registro</a>
         </div>
     </div>
 
