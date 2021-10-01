@@ -38,6 +38,7 @@ include("template/cabecera.php");
                             <th>PRODUCTO</th>
                             <th>VALOR UNITARIO</th>
                             <th>CANTIDAD</th>
+                            <th>DEVOLUCION</th>
 
                         </tr>
                     </thead>
@@ -51,7 +52,7 @@ include("template/cabecera.php");
                             if (!empty($listaProductos)) :
                                 foreach ($listaProductos as $Productos) : ?>
                                     <div class="form-group">
-                                        <tr style="vertical-align: middle;text-align: center;">
+                                        <tr style="vertical-align: middle;text-align: center; ">
                                             <?php
                                             $sentenciaSQL = $conexion->prepare("SELECT * FROM productos WHERE nombre = '" . $Productos['nombre'] . "';");
                                             $sentenciaSQL->execute();
@@ -60,12 +61,17 @@ include("template/cabecera.php");
                                             ?>
                                             <td><?php echo $Productos['nombre']; ?></td>
                                             <td><?php echo  $pre_prod[0]['precio'];; ?></td>
-                                            <td><input style="vertical-align: middle;text-align: center;" type="text" required="" autofocus='autofocus' class="form-control" name="<?php echo $nom ?>" id="txtID" placeholder="Llene la cantidad" pattern='[0-9]+' />
+                                            <td><input style="vertical-align: middle;text-align: center;" type="number" min="0" max="99999" step="0,1"  required="" autofocus='autofocus' class="form-control" name="<?php echo $nom ?>" id="txtID" placeholder="Llene la cantidad" pattern='[0-9]+' />
                                                 <p style="color: red; font-size: 12px;"> <?php echo !empty($_SESSION['alerta'][$nom]) ?  $_SESSION['alerta'][$nom] : ""; ?></p>
                                             </td>
+                                            <td><input style="vertical-align: middle;text-align: center;" type="number" min="0" max="99999" step="0,1"  autofocus='autofocus' class="form-control" name="<?php echo $nom."dev" ?>" id="txtID" placeholder="Llene la cantidad" pattern='[0-9]+' value="" />
+                                            <p style="color: red; font-size: 12px;"> <?php echo !empty($_SESSION['alerta'][$nom]) ?  $_SESSION['alerta'][$nom] : ""; ?></p>
+                                        </td>
+
                                         </tr>
                                     </div>
                             <?php endforeach;
+                           
                             endif;
 
                             ?>
@@ -80,7 +86,7 @@ include("template/cabecera.php");
     <div style="text-align: center; border: 5px solid black; width: 50%; margin: 30px auto 30px auto; background: gray;">
         <p ><?php echo isset($_SESSION['factura']) ? nl2br($_SESSION['factura']) : "";?></p> 
          <?php
-        echo isset($_SESSION['factura']) ? "<br><br><a  class = 'btn btn-primary' href= '../PDF/reporte.php?usu=2' > DESCARGAR </a>" : "";
+        echo isset($_SESSION['factura']) ? "<br><br><a  class = 'btn btn-primary' href= '../PDF/reporte.php?usu=2' target='_blank' > DESCARGAR </a>" : "";
         echo isset($_SESSION['mail']) ? "<br><br>" . $_SESSION['mail'] : "";
 
         //echo "<br><br>".$_SESSION['mail'];
@@ -91,7 +97,7 @@ include("template/cabecera.php");
     </div>
 </div>
 </div>
-
+<input type="number"  min="0" max="99999" step="0,1">
 
 <?php
 

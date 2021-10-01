@@ -159,6 +159,7 @@ $factura = "";
 </div>
 <div style="text-align: center; margin:40px 0px 40px 0px; ">
     <a href="./excelPedidos.php" class="btn btn-primary" style="width: 200px; height: 50px; text-align: center; font-size: 20px;">Descargar Registro</a>
+   
 </div>
 <div class="col-md-12" style="text-align: center;">
 

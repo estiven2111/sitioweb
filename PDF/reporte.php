@@ -1,15 +1,7 @@
 
 
 <?php
-/************************************************************
-* Reporte en PDF con FPDF                                   *
-*                                                           *
-* Fecha:    2021-02-09                                      *
-* Autor:  Marko Robles                                      *
-* Web:  www.codigosdeprogramacion.com                       *
-************************************************************/
 
-//require "conexion.php";
 
 session_start();
 require "plantilla.php";
@@ -24,8 +16,8 @@ require "plantilla.php";
 
     $pdf = new PDF("P", "mm", "letter");
     $pdf->AddPage();
-    $pdf->SetFont("Arial", "B", 15);
-    $pdf->SetMargins(80,8,20);
+    $pdf->SetFont("Arial", "", 15);
+    $pdf->SetMargins(65,8,20);
     $Productos=$_SESSION['factura'];
     //echo nl2br("sun \n moon \n sun \n moon");
     $nomp = str_replace('', '', $Productos);
@@ -41,7 +33,7 @@ require "plantilla.php";
     //$pdf->Ln(1);
     //$pdf->Cell(190, 5,'DESCRIPCION',1,1,'C');
     //$pdf->Ln(4);
-    $pdf->Output("","Factura Fabrica Desl Frito",true);
+    $pdf->Output("","Factura Fabrica Del Frito",true);
 
 
    /**$pdf->AliasNbPages();

@@ -44,6 +44,8 @@ function enviodatos()
   $totalprod = 0;
   $totalprecio = 0;
   $cadenacant = "";
+  $DEV = "";
+  $bol=false;
   foreach ($listaProductos as $Productos) {
     $nomp = str_replace(' ', '_', $Productos);
 
@@ -94,7 +96,7 @@ function enviodatos()
     }
     //$factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** <br> <br>" . "Fecha Pedido  " . date("d") . "/" . date("m") . "/" . date("y") . "<br> USUARIO  " . $_SESSION['USUARIO'] . "<br><br><br>";
     $factura = "****** FACTURA NUMERO  " . $num_fac[$tfact]['id'] . " ****** \n\n" . "Fecha Pedido  " .date('Y-m-d'). "\n USUARIO  " . $_SESSION['USUARIO'] . "\n\n";
-
+   
     foreach ($listaProductos as $imprimir) {
       $sentenciaSQL = $conexion->prepare("SELECT * FROM productos WHERE nombre = '" . $imprimir['nombre'] . "';");
       $sentenciaSQL->execute();
@@ -106,11 +108,19 @@ function enviodatos()
       if ((int)$_POST[$nomp1['nombre']] != 0) {
         $factura = $factura . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']] . " valor = $valound subtotal = $subtotal" . "\n";
       }
+     
+      if ((int)$_POST[$nomp1['nombre']."dev"] != 0) {
+        $DEV = $DEV . "" . $imprimir['nombre'] . " = " . $_POST[$nomp1['nombre']."dev"] . " " . "\n";
+        $bol=true;
+      }
+      
+      
     }
-
-
     $factura = $factura . "total precio = $totalprecio \n\n";
-
+    if ($bol) {
+      $factura = $factura . "DEVOLUCIONES  \n\n $DEV";
+    }
+   
 
     $_SESSION['factura'] = $factura;
     $txtfact = (int)$num_fac[$tfact]['id'];
@@ -133,7 +143,6 @@ function enviodatos()
     $total_diario1 = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     $fecha = date('Y-m-d');
     $diario = $total_diario1[0]['Diario'];
-var_dump($fecha);
     if ($total_diario == false) {
       $sentenciaSQL = $conexion->prepare("INSERT INTO registro VALUES (NULL, '$fecha', '$diario'); ");
       $sentenciaSQL->execute();
@@ -142,10 +151,10 @@ var_dump($fecha);
       $sentenciaSQL->execute();
     }
 
-
+   
 
 ?>
-    <meta http-equiv="refresh" content="0;url=./pedidos.php">
+    <!--<meta http-equiv="refresh" content="0;url=./pedidos.php">-->
 <?php
 
   }
