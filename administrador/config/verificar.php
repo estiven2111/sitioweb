@@ -3,7 +3,7 @@ session_start();
 $url="http://".$_SERVER['HTTP_HOST']."/sitioweb/ingresar.php";//ingresar.php
 $url1 ="http://".$_SERVER['REQUEST_URI'];
 $host="localhost";
-$db="db_fabricafrito";
+$db="fabricafrito";
 $usuario="root";
 $contrasenia="";
 

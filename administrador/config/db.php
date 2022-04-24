@@ -6,7 +6,7 @@ $usuario="fabric42_TecnoEAM";
 $contrasenia="E1020441estiven";**/
 
 $host="localhost";
-$db="db_fabricafrito";
+$db="fabricafrito";
 $usuario="root";
 $contrasenia="";
 
